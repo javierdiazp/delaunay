@@ -48,8 +48,10 @@ class DelaunayT(Triangulation):
     ' Find the triangle that contain a point in a triangulation'
     def findTriangle(self, point, eps):
         curTriangle = random.choice(self.triangles)
-        while(curTriangle != curTriangle.triangle_containing_point(point,eps)):
+        while(curTriangle != curTriangle.triangle_containing_point(point,eps) and curTriangle != None):
             curTriangle = curTriangle.triangle_containing_point(point,eps)
+        if(curTriangle == None):
+            raise NameError("Point lies outside any triangle")
         return curTriangle
 
 
