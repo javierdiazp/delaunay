@@ -44,23 +44,27 @@ class DelaunayT(Triangulation):
         
         return Triangle(vertexs, neighbors)
 
-' --------------------------------------- '
-' -----------------TODO------------------ '
-' --------------------------------------- '
+    ' POINT -> TRIANGLE '
+    ' Find the triangle that contain a point in a triangulation'
+    def findTriangle(self, point, eps):
+        curTriangle = random.choice(self.triangles)
+        while(curTriangle != curTriangle.triangle_containing_point(point,eps) and curTriangle != None):
+            curTriangle = curTriangle.triangle_containing_point(point,eps)
+        if(curTriangle == None):
+            raise NameError("Point lies outside any triangle")
+        return curTriangle
 
-    ' POINT -> VOID '
-    ' Insert a new point in the triangulation '
+
+    ' POINT -> VOID'
+    ' Adds a point to the triangulation'
     def insertPoint(self, point):
+        eps = 0.00001
         if self.triangles:
-           t = findTriangle(point)
-           if (True): # point lies in the interior of t ("True" must be changed)
-               pass
-            else: # point lies on an edge of t
+            t = findTriangle(point,eps)
+            'TODO'
+            if (True):
+                pass
+            else:
                 pass
         else:
             raise NameError("need at least one triangle")
-
-    ' POINT -> TRIANGLE '
-    ' Find the triangle that contain a point in a triangulation'
-    def findTriangle(self, point):
-        return None
